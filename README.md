@@ -74,6 +74,17 @@ npx webgame-qa audit webgame-qa.config.mjs
 
 The command writes a JSON report to `.qa-output/browser-audit.json` and exits with a nonzero status when any check fails.
 
+Example summary:
+
+```json
+{
+  "pass": true,
+  "total": 10,
+  "passed": 10,
+  "failed": 0
+}
+```
+
 ## Save integrity
 
 ```js
@@ -133,6 +144,10 @@ examples/demo/           Self-contained synthetic application
 scripts/                 Build, syntax, example, and history checks
 .github/workflows/       Reproducible CI gate
 ```
+
+## CI integration
+
+The bundled GitHub Actions workflow uses Node.js 24, installs dependencies with `npm ci`, installs Chromium, checks dependency advisories, and runs `npm run ci`. It needs read-only repository access and no application secrets. Other CI services can use the same four commands shown in **Install and validate**.
 
 ## Configuration notes
 
