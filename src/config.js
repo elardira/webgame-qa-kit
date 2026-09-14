@@ -23,8 +23,10 @@ export function normalizeConfig(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) throw new TypeError("config must be an object");
   const raw=/** @type {Record<string, unknown>} */(input);
   const baseUrl=requiredString(raw.baseUrl,"baseUrl").replace(/\/$/,"");
-  const protocol=new URL(baseUrl).protocol;
+  const parsedBaseUrl=new URL(baseUrl);
+  const protocol=parsedBaseUrl.protocol;
   if (!["http:","https:"].includes(protocol)) throw new TypeError("baseUrl must use http or https");
+  if (parsedBaseUrl.username || parsedBaseUrl.password) throw new TypeError("baseUrl must not contain credentials");
   const viewports=Array.isArray(raw.viewports)&&raw.viewports.length?raw.viewports:DEFAULT_VIEWPORTS;
   const normalizedViewports=viewports.map((item,index)=>{
     if (!item||typeof item!=="object") throw new TypeError(`viewports[${index}] must be an object`);

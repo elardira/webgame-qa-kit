@@ -1,5 +1,7 @@
 # WebGame QA Kit
 
+> CI badge: add the workflow badge after the owner creates the final repository URL. Do not publish a badge that points to a placeholder repository.
+
 WebGame QA Kit is a small, framework-independent release gate for browser games and stateful web applications. It combines repeatable browser checks, save-file validation, responsive layout assertions, state regression comparisons, and redacted secret scanning in one local command-line workflow.
 
 The project is a clean-room, synthetic toolkit. Its demo contains fictional data, no production assets, no service credentials, and no dependency on a private application.
@@ -169,6 +171,8 @@ Use synthetic fixtures. Do not commit customer saves, access tokens, session exp
 - Machine-readable SARIF output for secret findings
 - Multi-page application navigation presets
 - Accessibility assertions that fit the same release report
+
+See [CHANGELOG.md](CHANGELOG.md) for the release policy and unreleased changes.
 
 ## License and contributions
 

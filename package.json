@@ -2,6 +2,14 @@
   "name": "webgame-qa-kit",
   "version": "0.1.0",
   "description": "Reusable release checks for browser games and stateful web applications.",
+  "keywords": [
+    "browser-game",
+    "playwright",
+    "quality-assurance",
+    "release-gate",
+    "responsive-testing",
+    "save-state"
+  ],
   "type": "module",
   "license": "Apache-2.0",
   "private": false,

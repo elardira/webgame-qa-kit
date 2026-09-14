@@ -11,6 +11,7 @@ test("normalizes a minimal configuration", () => {
 
 test("rejects unsafe protocols and incomplete routes", () => {
   assert.throws(() => normalizeConfig({ baseUrl: "file:///tmp/demo", routes: [{ path: "/" }] }), /http or https/);
+  assert.throws(() => normalizeConfig({ baseUrl: "https://user:password@example.invalid", routes: [{ path: "/" }] }), /must not contain credentials/);
   assert.throws(() => normalizeConfig({ baseUrl: "https://example.invalid", routes: [] }), /at least one/);
   assert.throws(() => normalizeConfig({ baseUrl: "https://example.invalid", routes: [{ path: "home" }] }), /start with/);
 });

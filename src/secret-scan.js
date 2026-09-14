@@ -26,12 +26,7 @@ async function collectFiles(root, current = root, output = []) {
   return output;
 }
 
-/** @param {string} line */
-function isExplicitFixture(line) {
-  return /TEST_ONLY_SYNTHETIC|EXAMPLE_ONLY_PLACEHOLDER/.test(line);
-}
-
-/** @param {string} root @param {{output?:string,allowMarkedFixtures?:boolean}} [options] */
+/** @param {string} root @param {{output?:string}} [options] */
 export async function scanSecrets(root, options = {}) {
   const absoluteRoot = path.resolve(root);
   const files = await collectFiles(absoluteRoot);
@@ -41,7 +36,6 @@ export async function scanSecrets(root, options = {}) {
     const contents = await fs.readFile(file, "utf8");
     const lines = contents.split(/\r?\n/);
     lines.forEach((line, index) => {
-      if (options.allowMarkedFixtures !== false && isExplicitFixture(line)) return;
       for (const [detector, pattern] of DETECTORS) {
         pattern.lastIndex = 0;
         if (pattern.test(line)) findings.push({ path: path.relative(absoluteRoot, file).replaceAll("\\", "/"), line: index + 1, detector, message: "SECRET DETECTED — REDACTED" });

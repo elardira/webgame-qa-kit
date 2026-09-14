@@ -17,7 +17,7 @@ if (inside.status === 0) {
   checkedCommits = commits.length;
   for (const commit of commits) {
     for (const [detector, pattern] of patterns) {
-      const result = spawnSync("git", ["grep", "-I", "-l", "-E", pattern, commit, "--", ".", ":(exclude)package-lock.json"], { encoding: "utf8" });
+      const result = spawnSync("git", ["grep", "-I", "-l", "-E", pattern, commit, "--", "."], { encoding: "utf8" });
       if (result.status === 0) {
         for (const match of result.stdout.trim().split(/\r?\n/).filter(Boolean)) {
           const separator = match.indexOf(":");

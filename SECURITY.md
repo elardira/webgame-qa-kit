@@ -6,7 +6,7 @@ Until the first public release, security fixes apply to the current `main` branc
 
 ## Reporting a vulnerability
 
-Do not open a public issue for a suspected vulnerability or exposed credential. Contact the repository owner privately through the security-reporting channel configured on the future hosting platform. Include affected versions, reproduction steps, impact, and any suggested mitigation. Avoid including real user data or reusable credentials.
+Do not open a public issue for a suspected vulnerability or exposed credential. After the repository is created, use its **Security → Report a vulnerability** form. The owner must enable GitHub private vulnerability reporting before publication. Include affected versions, reproduction steps, impact, and any suggested mitigation. Avoid including real user data or reusable credentials.
 
 The maintainer should acknowledge a report within five business days, validate impact, prepare a fix privately when appropriate, rotate affected credentials, and publish a coordinated advisory after remediation.
 
