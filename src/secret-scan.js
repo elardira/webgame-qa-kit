@@ -11,7 +11,8 @@ const DETECTORS = [
   ["openai-key", /\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b/g],
   ["github-token", /\b(?:ghp|github_pat)_[A-Za-z0-9_]{20,}\b/g],
   ["sentry-auth-token", /\bsntrys_[A-Za-z0-9_-]{20,}\b/g],
-  ["resend-key", /\bre_[A-Za-z0-9_-]{20,}\b/g]
+  ["resend-key", /\bre_[A-Za-z0-9_-]{20,}\b/g],
+  ["named-secret-assignment", /\b(?:CLOUDFLARE_API_TOKEN|CF_API_TOKEN|SUPABASE_SERVICE_ROLE_KEY|SENTRY_AUTH_TOKEN|RESEND_API_KEY|OPENAI_API_KEY|GITHUB_TOKEN)\s*[:=]\s*["']?[A-Za-z0-9_./+=-]{16,}/gi]
 ];
 
 /** @param {string} root @param {string} [current] @param {string[]} [output] @returns {Promise<string[]>} */
@@ -20,7 +21,7 @@ async function collectFiles(root, current = root, output = []) {
     if (entry.isDirectory() && SKIP_DIRECTORIES.has(entry.name)) continue;
     const absolute = path.join(current, entry.name);
     if (entry.isDirectory()) await collectFiles(root, absolute, output);
-    else if (entry.isFile() && (TEXT_EXTENSIONS.has(path.extname(entry.name).toLowerCase()) || entry.name === "LICENSE" || entry.name === "NOTICE")) output.push(absolute);
+    else if (entry.isFile() && (TEXT_EXTENSIONS.has(path.extname(entry.name).toLowerCase()) || entry.name === ".env" || entry.name.startsWith(".env.") || entry.name === "LICENSE" || entry.name === "NOTICE")) output.push(absolute);
   }
   return output;
 }

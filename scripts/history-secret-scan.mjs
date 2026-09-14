@@ -5,7 +5,8 @@ const patterns = [
   ["private-key", "BEGIN [A-Z ]*PRIVATE KEY"],
   ["supabase-secret", "sb_secret_[A-Za-z0-9_-]{20,}"],
   ["json-web-token", "eyJ[A-Za-z0-9_-]{12,}\\.eyJ[A-Za-z0-9_-]{12,}\\.[A-Za-z0-9_-]{12,}"],
-  ["provider-token", "(sk-(proj-)?|ghp_|github_pat_|sntrys_|re_)[A-Za-z0-9_-]{20,}"]
+  ["provider-token", "(sk-(proj-)?|ghp_|github_pat_|sntrys_|re_)[A-Za-z0-9_-]{20,}"],
+  ["named-secret-assignment", "(CLOUDFLARE_API_TOKEN|CF_API_TOKEN|SUPABASE_SERVICE_ROLE_KEY|SENTRY_AUTH_TOKEN|RESEND_API_KEY|OPENAI_API_KEY|GITHUB_TOKEN)[[:space:]]*[:=][[:space:]]*['\\\"]?[A-Za-z0-9_./+=-]{16,}"]
 ];
 const inside = spawnSync("git", ["rev-parse", "--is-inside-work-tree"], { encoding: "utf8" });
 const findings = [];
