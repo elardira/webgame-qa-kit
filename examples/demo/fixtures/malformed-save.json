@@ -1,0 +1,6 @@
+{
+  "version": "unknown",
+  "player": null,
+  "resources": { "energy": "many" },
+  "inventory": "not-an-array"
+}

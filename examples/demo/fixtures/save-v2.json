@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "player": { "name": "Demo Pilot" },
+  "resources": { "energy": 12, "credits": 240 },
+  "inventory": [{ "id": "sample-amber", "name": "Amber Sample", "quantity": 1 }]
+}
